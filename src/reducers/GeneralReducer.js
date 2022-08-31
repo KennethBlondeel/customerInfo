@@ -4,21 +4,9 @@
 const initialState = {
   lang: "nl",
   current_establishment: {
-    active: true,
     accept_GDPR: true,
     last_accepted_GDPR: "2022-08-18",
     accept_terms: true,
-    address: {
-      extra: "",
-      long: "",
-      lat: "",
-      municipality: "",
-      city: "",
-      postal_code: "",
-      box: "",
-      number: "",
-      street: "",
-    },
     last_accepted_terms: "2022-08-18",
     accept_share_with_municipality: true,
     support_city_meaning: 0,
@@ -83,28 +71,6 @@ const initialState = {
     business_twitter_fr: null,
     business_twitter_de: null,
     business_twitter_en: null,
-    business_tiktok_nl: null,
-    business_tiktok_fr: null,
-    business_tiktok_de: null,
-    business_tiktok_en: null,
-    business_snapchat_nl: null,
-    business_snapchat_fr: null,
-    business_snapchat_de: null,
-    business_snapchat_en: null,
-    business_spotify_nl: null,
-    business_spotify_fr: null,
-    business_spotify_de: null,
-    business_spotify_en: null,
-    bon: {
-      info_text:
-        "Zo worden de handelszaken ondersteunt én verhogen we een beetje de koopkracht van elke inwoner.",
-      info_title: "Een kadobon van € 5 of € 20 kan online aangekocht worden.",
-      intro_text:
-        "Koop Lokaal is meer dan ooit nodig! De gemeentelijke kadobon is een initiatief van UNIZO.",
-      link: "https://www.unizo-erpe-mere.be/kadobon/online-bestellen/",
-      municipality: "Erpe-Mere",
-      name: "Erpe-Mere kadobon",
-    },
     contact_info: [
       {
         score: 10,
@@ -184,13 +150,6 @@ const initialState = {
         contact_person: {
           first_name: "Erik",
           last_name: "Vercruysse",
-          birthday: "2022-08-27",
-          language: {
-            dutch: false,
-            french: false,
-            german: false,
-            english: false,
-          },
           biv: null,
           epc: null,
           personal_contact_methods: [
@@ -203,8 +162,18 @@ const initialState = {
               value: "0497 579 777",
             },
             {
-              medium: "Fixed",
-              value: "053 78 07 77",
+              medium: "WhatsApp",
+              value:
+                "https://api.whatsapp.com/send?phone=32497579777&text=Hey,%20stuur%20gerust%20een%20berichtje%20en%20ik%20antwoord%20je%20zo%20snel%20mogelijk!",
+            },
+            {
+              medium: "LinkedIn",
+              value:
+                "https://be.linkedin.com/in/erik-vercruysse-22438576?trk=people-guest_profile-result-card_result-card_full-click",
+            },
+            {
+              medium: "Facebook",
+              value: "https://www.facebook.com/erik.vercruysse",
             },
           ],
           avatar:
@@ -212,7 +181,6 @@ const initialState = {
         },
         business_contact_methods: [],
         function_title: "Bestuurder",
-        section: "Bestuurder",
         avatar: "",
       },
     ],

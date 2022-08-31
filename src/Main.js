@@ -2,8 +2,8 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import "./App.scss";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import Icon from "@identitybuilding/idb-react-iconlib";
-import { OsnInputText } from "@identitybuilding/idb-react-ui-elements";
+// import Icon from "@identitybuilding/idb-react-iconlib";
+// import { OsnInputText } from "@identitybuilding/idb-react-ui-elements";
 import { useSelector } from "react-redux";
 
 const Main = ({}) => {
@@ -110,7 +110,7 @@ const Main = ({}) => {
       <Link to={`BE0718600051/BE2285183012/`}>brief</Link>
       <h2>Welcome {ent}</h2>
       <p>Zoek en selecteer jouw vestiging</p>
-      <OsnInputText onChange={(e) => FilterResults(e.target.value)} />
+      <input onChange={(e) => FilterResults(e.target.value)} />
       <div className="cardWrapper">
         {loaded === true
           ? filteredEstablishments.map((data, index) => (
@@ -157,7 +157,7 @@ const Main = ({}) => {
                 </div>
                 <div className="cardLinks">
                   <Link to={`/${ent}/${data.id}/login`}>
-                    <Icon name="ArrowRight" />
+                    {/* <Icon name="ArrowRight" /> */}
                   </Link>
                 </div>
               </div>

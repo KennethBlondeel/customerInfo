@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link, useParams } from "react-router-dom";
 import { updateEmail, updatePassword } from "./actions/GeneralAction";
-import { OsnInputText, Button } from "@identitybuilding/idb-react-ui-elements";
+// import { OsnInputText, Button } from "@identitybuilding/idb-react-ui-elements";
 
 const Signin = () => {
   const { token } = useParams();
@@ -38,7 +38,7 @@ const Signin = () => {
       <div className="signin_wrapper">
         <h2>Reset Wachtwoord:</h2>
         <form>
-          <OsnInputText
+          <input
             icon="Mail"
             title="E-mailadres"
             type="text"
@@ -47,7 +47,7 @@ const Signin = () => {
               setEmail(e.target.value);
             }}
           />
-          <OsnInputText
+          <input
             icon="Locked"
             title="Wachtwoord"
             type="password"
@@ -56,7 +56,7 @@ const Signin = () => {
               setPassword(e.target.value);
             }}
           />
-          <OsnInputText
+          <input
             icon="Locked"
             title="Herhaal wachtwoord"
             type="password"
@@ -65,7 +65,7 @@ const Signin = () => {
               setPasswordRepeat(e.target.value);
             }}
           />
-          <Button
+          <button
             borderColor="sub"
             text="Wachtwoord resetten"
             txtColor="sub"

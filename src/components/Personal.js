@@ -2,44 +2,39 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import store from "../store";
 import plenny from "../library/images/plenny-point.png";
-import { Button, OsnInputText } from "@identitybuilding/idb-react-ui-elements";
-import { updateCurrentEstablishment } from "../actions/GeneralAction";
-import { useDispatch } from "react-redux";
+// import { Button, OsnInputText } from "@identitybuilding/idb-react-ui-elements";
 
 const Personal = (props) => {
   const [data, setData] = useState(props.data);
   const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch();
 
   const patchData = () => {
-    dispatch(updateCurrentEstablishment(data));
-
-    // axios
-    //   .put(
-    //     "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
-    //     {
-    //       ...data,
-    //     }
-    //   )
-    //   .then(async (res) => {
-    //     // console.log(res);
-    //   });
+    axios
+      .put(
+        "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
+        {
+          ...data,
+        }
+      )
+      .then(async (res) => {
+        // console.log(res);
+      });
   };
 
   const changePrive = (e, type) => {
     e.preventDefault();
     let copy = data;
 
-    if (type === "first_name") {
-      copy.first_name =
+    if (type === "prive_prename") {
+      copy.prive_prename =
         e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
     }
-    if (type === "last_name") {
-      copy.last_name =
+    if (type === "prive_name") {
+      copy.prive_name =
         e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
     }
-    if (type === "personal_mobile_phone") {
-      copy.personal_mobile_phone = e.target.value
+    if (type === "prive_cellphone") {
+      copy.prive_cellphone = e.target.value
         .replace("+32", "0")
         .replace("+32 (0)", "0")
         .replace("+32", "0")
@@ -52,8 +47,8 @@ const Personal = (props) => {
         .replace("-", "")
         .replace(" ", "");
     }
-    if (type === "personal_fixed_phone") {
-      copy.personal_fixed_phone = e.target.value
+    if (type === "prive_phone") {
+      copy.prive_phone = e.target.value
         .replace("+32", "0")
         .replace("+32 (0)", "0")
         .replace("+32", "0")
@@ -66,8 +61,8 @@ const Personal = (props) => {
         .replace("-", "")
         .replace(" ", "");
     }
-    if (type === "personal_email") {
-      copy.personal_email = e.target.value;
+    if (type === "prive_email") {
+      copy.prive_email = e.target.value;
     }
 
     console.log(copy);
@@ -101,64 +96,64 @@ const Personal = (props) => {
         <form onSubmit={(e) => changePrive(e)}>
           <div className="prive-inputs">
             <div>
-              <OsnInputText
+              <input
                 title="Voornaam"
                 icon="UserM"
                 required
-                defaultValue={data.first_name}
+                defaultValue={data.prive_prename}
                 className="input"
-                onBlur={(e) => changePrive(e, "first_name")}
+                onBlur={(e) => changePrive(e, "prive_prename")}
               />
             </div>
             <div>
-              <OsnInputText
+              <input
                 title="Naam"
                 icon="UserM"
                 required
-                defaultValue={data.last_name}
+                defaultValue={data.prive_name}
                 className="input"
-                onBlur={(e) => changePrive(e, "last_name")}
+                onBlur={(e) => changePrive(e, "prive_name")}
               />
             </div>
 
             <div>
-              <OsnInputText
+              <input
                 title="Mobiele telefoon"
                 icon="Cellphone"
                 required
-                defaultValue={data.personal_mobile_phone}
+                defaultValue={data.prive_cellphone}
                 className="input"
-                onBlur={(e) => changePrive(e, "personal_mobile_phone")}
+                onBlur={(e) => changePrive(e, "prive_cellphone")}
               />
             </div>
 
             <div>
-              <OsnInputText
+              <input
                 title="Telefoon"
                 icon="Phone"
                 required
-                defaultValue={data.personal_fixed_phone}
+                defaultValue={data.prive_phone}
                 className="input"
                 type="tel"
-                onBlur={(e) => changePrive(e, "personal_fixed_phone")}
+                onBlur={(e) => changePrive(e, "prive_phone")}
               />
             </div>
           </div>
           <div>
-            <OsnInputText
+            <input
               title="Email"
               icon="Mail"
               required
-              defaultValue={data.personal_email}
+              defaultValue={data.prive_email}
               className="input wide"
-              onBlur={(e) => changePrive(e, "personal_email")}
+              onBlur={(e) => changePrive(e, "prive_email")}
             />
           </div>
         </form>
         <img alt="plenny" src={plenny} />
       </section>
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"
@@ -168,7 +163,7 @@ const Personal = (props) => {
             props.setTab();
           }}
         />
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"

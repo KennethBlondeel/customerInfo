@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link, useParams } from "react-router-dom";
 import { updateEmail, updatePassword } from "./actions/GeneralAction";
-import { OsnInputText, Button } from "@identitybuilding/idb-react-ui-elements";
+// import { OsnInputText, Button } from "@identitybuilding/idb-react-ui-elements";
 
 const Signin = () => {
   const { est, ent } = useParams();
@@ -72,24 +72,24 @@ const Signin = () => {
       <div className="signin_wrapper">
         <h2>Maak een account aan</h2>
         <form>
-          <OsnInputText
+          <input
             icon="Entrepreneur"
             title="E-mailadres"
             onChange={(e) => onChange("email", e.target.value)}
           />
-          <OsnInputText
+          <input
             icon="Locked"
             title="Wachtwoord"
             type="password"
             onChange={(e) => onChange("password", e.target.value)}
           />
-          <OsnInputText
+          <input
             icon="Locked"
             title="Herhaal wachtwoord"
             type="password"
             onChange={(e) => onChange("passwordrepeat", e.target.value)}
           />
-          <Button
+          <button
             borderColor="sub"
             text="Account aanmaken"
             txtColor="sub"

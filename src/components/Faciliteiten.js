@@ -1,13 +1,13 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import Icon from "@identitybuilding/idb-react-iconlib";
+// import Icon from "@identitybuilding/idb-react-iconlib";
 import axios from "axios";
 import store from "../store";
-import {
-  Button,
-  OsnCheckbox,
-  OsnInputText,
-} from "@identitybuilding/idb-react-ui-elements";
-import { useDispatch } from "react-redux";
+// import {
+//   Button,
+//   OsnCheckbox,
+//   OsnInputText,
+// } from "@identitybuilding/idb-react-ui-elements";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentEstablishment } from "../actions/GeneralAction";
 
 const titles = document.getElementsByClassName("faciTitle");
@@ -187,7 +187,7 @@ const Faciliteiten = (props) => {
       {data && (
         <section className="faci-container">
           <div className="search-bar">
-            <OsnInputText
+            <input
               onChange={(e) => {
                 setSearchValue(e.target.value);
                 search(e.target.value);
@@ -207,10 +207,8 @@ const Faciliteiten = (props) => {
                     key={index}
                     className="item"
                   >
-                    <figure>
-                      <img src={item.icon} alt={item.name} />
-                    </figure>
-                    <OsnCheckbox
+                    <img src={item.icon} alt={item.name} />
+                    <input
                       checked={item.active}
                       name={item.name}
                       onChange={(e) => {
@@ -231,24 +229,26 @@ const Faciliteiten = (props) => {
                   onClick={(e) => changeTab(e)}
                   className="card-title faciTitle"
                 >
-                  {+faciTab === index && <Icon name="ArrowDown" />}
-                  {+faciTab !== index && <Icon name="ArrowUp" />}
+                  {/* {+faciTab === index && <Icon name="ArrowDown" />}
+                  {+faciTab !== index && <Icon name="ArrowUp" />} */}
                   {key}
                 </h3>
                 <div className="card-container">
                   {value.map((itm, i) => (
-                    <div
-                      onClick={(e) => {
-                        e.preventDefault();
-                        ChangeFaciliteiten(itm, i);
-                      }}
-                      key={i}
-                      className="item"
-                    >
-                      <figure>
-                        <img src={itm.icon} alt={itm.name} />
-                      </figure>
-                      <OsnCheckbox checked={itm.active} name={itm.name} />
+                    <div key={i} className="item">
+                      <img
+                        onClick={(e) => ChangeFaciliteiten(itm, i)}
+                        src={itm.icon}
+                        alt={itm.name}
+                      />
+                      <input
+                        checked={itm.active}
+                        name={itm.name}
+                        // onChange={() => console.log('ok')}
+                        onChange={(e) => {
+                          ChangeFaciliteiten(itm, i);
+                        }}
+                      />
                     </div>
                   ))}
                 </div>
@@ -260,25 +260,26 @@ const Faciliteiten = (props) => {
             <div className="extra">
               <h3>Andere mogelijkheden?</h3>
               <div ref={inputRef} className="input-container">
-                <OsnInputText
+                <input
                   name={"extra"}
                   icon="Edit"
                   size="M"
                   placeholder="Voeg de naam in van jouw extra faciliteit"
                 />
-                <Icon onClick={(e) => addSug(e)} name="AddCircle" />
+                {/* <Icon onClick={(e) => addSug(e)} name="AddCircle" /> */}
               </div>
               <div className="help">
-                <Icon name="Info" /> Alles wordt eerst gecontroleerd vooraleer
-                het online wordt geplaatst.
+                {/* <Icon name="Info" />  */}
+                Alles wordt eerst gecontroleerd vooraleer het online wordt
+                geplaatst.
               </div>
               <div className="button-container">
                 {sug.map((item, index) => (
                   <button className={["select-button", "active"].join(" ")}>
-                    <Icon
+                    {/* <Icon
                       name="CloseCircle"
                       onClick={(e) => removeSug(e, index)}
-                    />
+                    /> */}
                     <p>{item}</p>
                   </button>
                 ))}
@@ -288,7 +289,7 @@ const Faciliteiten = (props) => {
         </section>
       )}
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"
@@ -298,7 +299,7 @@ const Faciliteiten = (props) => {
             props.setTab();
           }}
         />
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"

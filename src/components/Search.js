@@ -1,14 +1,12 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import Icon from "@identitybuilding/idb-react-iconlib";
+// import Icon from "@identitybuilding/idb-react-iconlib";
 import store from "../store";
-import { updateCurrentEstablishment } from "../actions/GeneralAction";
-import { useDispatch } from "react-redux";
-import {
-  Button,
-  OsnInputText,
-  OsnSelect,
-} from "@identitybuilding/idb-react-ui-elements";
+// import {
+//   Button,
+//   OsnInputText,
+//   OsnSelect,
+// } from "@identitybuilding/idb-react-ui-elements";
 
 const Search = (props) => {
   const [typingTimeout, setTypingTimeout] = useState(0);
@@ -30,24 +28,22 @@ const Search = (props) => {
   const ITAARef = useRef();
   const APBRef = useRef();
   const FMSARef = useRef();
-  const dispatch = useDispatch();
 
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
   const patchData = (data) => {
-    dispatch(updateCurrentEstablishment(data));
-    // axios
-    //   .put(
-    //     "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
-    //     {
-    //       ...data,
-    //     }
-    //   )
-    //   .then((res) => {
-    //     setLoaded(false);
-    //     setLoaded(true);
-    //   });
+    axios
+      .put(
+        "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
+        {
+          ...data,
+        }
+      )
+      .then((res) => {
+        setLoaded(false);
+        setLoaded(true);
+      });
   };
 
   const changeCategory = (e, action, type) => {
@@ -313,6 +309,10 @@ const Search = (props) => {
   const changePublic = (e) => {
     e.preventDefault();
     let copy = data;
+
+    console.log(
+      publicNameRef.current.childNodes[0].childNodes[0].childNodes[1].value
+    );
 
     copy.name_nl =
       publicNameRef.current.childNodes[0].childNodes[0].childNodes[1].value;
@@ -726,16 +726,16 @@ const Search = (props) => {
         </h2>
         <div>
           <h2>Hoe kunnen bezoekers je bereiken?</h2>
-          <span>
+          <p>
             Je begrijpt dat het heel belangrijk is om correcte gegevens van je
             onderneming te publiceren.
             <br /> Op deze manier kunnen bezoekers je ook bereiken.
             <br />
             <span className="extra">
-              <Icon name="Info" />
+              {/* <Icon name="Info" /> */}
               De volgende informatie zal <b>ZICHTBAAR ZIJN VOOR IEDEREEN!</b>
             </span>
-          </span>
+          </p>
         </div>
       </div>
 
@@ -745,7 +745,7 @@ const Search = (props) => {
             <form className="section">
               <div className="public-inputs">
                 <div>
-                  <OsnInputText
+                  <input
                     title="Maatschappelijke Naam (staat vast)"
                     icon="Briefcase"
                     required
@@ -756,7 +756,7 @@ const Search = (props) => {
                 </div>
                 <label className="commercieleNaam">
                   <span ref={publicNameRef}>
-                    <OsnInputText
+                    <input
                       title="Commerciële naam"
                       icon="Briefcase"
                       required
@@ -780,7 +780,7 @@ const Search = (props) => {
                 </label>
                 <div>
                   <span ref={publicEmailRef}>
-                    <OsnInputText
+                    <input
                       title="Email (wordt dus nooit zichtbaar)"
                       icon="Mail"
                       required
@@ -790,8 +790,8 @@ const Search = (props) => {
                   </span>
                 </div>
                 <br />
-                <span className="help">
-                  <Icon name="Info" />
+                <p className="help">
+                  {/* <Icon name="Info" /> */}
                   De publicatie van 1 telefoonnummer is een{" "}
                   <a
                     href="https://news.economie.fgov.be/203683-deze-info-moet-u-zeker-vermelden-op-uw-bedrijfswebsite"
@@ -802,10 +802,10 @@ const Search = (props) => {
                     vereiste
                   </a>{" "}
                   van FOD Economie
-                </span>
+                </p>
                 <div>
                   <span ref={publicCellphoneRef}>
-                    <OsnInputText
+                    <input
                       title="Mobiele telefoon"
                       icon="Cellphone"
                       required
@@ -816,7 +816,7 @@ const Search = (props) => {
                 </div>
 
                 <span ref={publicPhoneRef}>
-                  <OsnInputText
+                  <input
                     title="Telefoon"
                     icon="Phone"
                     required
@@ -826,7 +826,7 @@ const Search = (props) => {
                 </span>
 
                 <span ref={publicFaxRef}>
-                  <OsnInputText
+                  <input
                     title="Fax"
                     icon="Fax"
                     required
@@ -836,7 +836,7 @@ const Search = (props) => {
                 </span>
                 <label className="select">
                   Handel je met consumenten (particulieren)?
-                  <OsnSelect
+                  {/* <OsnSelect
                     onChange={(e) => {
                       let copy = data;
 
@@ -849,10 +849,8 @@ const Search = (props) => {
                       data.particulieren === 0
                         ? "Gelieve een optie te kiezen!"
                         : data.particulieren === 1
-                        ? "Nee"
-                        : data.particulieren === 2
                         ? "Ja"
-                        : "Ja, ik handel met bedrijven (B2B) en consumenten (B2C)"
+                        : "Nee"
                     }
                     options={[
                       {
@@ -861,22 +859,18 @@ const Search = (props) => {
                       },
                       {
                         id: 1,
-                        name: "Nee",
-                      },
-                      {
-                        id: 2,
                         name: "Ja",
                       },
                       {
-                        id: 3,
-                        name: "Ja, ik handel met bedrijven (B2B) en consumenten (B2C)",
+                        id: 2,
+                        name: "Nee",
                       },
                     ]}
-                  />
+                  /> */}
                 </label>
                 <label className="select">
                   Wat bied je aan?
-                  <OsnSelect
+                  {/* <OsnSelect
                     onChange={(e) => {
                       let copy = data;
                       copy.kind = e.id;
@@ -910,7 +904,7 @@ const Search = (props) => {
                         name: "Goederen",
                       },
                     ]}
-                  />
+                  /> */}
                 </label>
               </div>
             </form>
@@ -939,18 +933,19 @@ const Search = (props) => {
                     "false-info",
                   ].join(" ")}
                 >
-                  <Icon name="Info" />
+                  {/* <Icon name="Info" /> */}
                   <p>Je wordt enkel gevonden onder jouw hoofdactiviteit!</p>
                 </div>
               )}
               {data.paid_version && (
                 <div
+                  id={data.paid_version}
                   className={[
                     data.paid_version ? "active" : "",
                     "false-info",
                   ].join(" ")}
                 >
-                  <Icon name="Info" />
+                  {/* <Icon name="Info" /> */}
                   <p>
                     Voeg alle activiteiten toe die jouw onderneming aanbiedt!
                   </p>
@@ -986,13 +981,13 @@ const Search = (props) => {
                       {data.main_category.map((category) => (
                         <Fragment key={category}>
                           <button className="select-button active">
-                            <Icon
+                            {/* <Icon
                               className="c-selected-icon"
                               onClick={(e) => {
                                 changeCategory(e, "REMOVEMAIN", category.name);
                               }}
                               name="CloseCircle"
-                            />
+                            /> */}
                             {category.name}
                           </button>
                         </Fragment>
@@ -1001,7 +996,7 @@ const Search = (props) => {
                   )}
                 </div>
                 <span className="search-bar" ref={searchMainRef}>
-                  <OsnInputText
+                  <input
                     dropdown_result={dropdownloaded ? [...mainResult] : []}
                     required
                     placeholder="Wens je jouw activiteit aan te passen?"
@@ -1025,7 +1020,7 @@ const Search = (props) => {
                   <label>
                     <div>
                       <span ref={ITAARef}>
-                        <OsnInputText
+                        <input
                           required
                           title="ITAA registratie"
                           defaultValue={data.ITAA}
@@ -1045,7 +1040,7 @@ const Search = (props) => {
                     <label>
                       <div>
                         <span ref={ITAARef}>
-                          <OsnInputText
+                          <input
                             required
                             title="ITAA registratie"
                             defaultValue={data.ITAA}
@@ -1062,7 +1057,7 @@ const Search = (props) => {
                     item.name === "Apotheken (benodigdheden)"
                 ) && (
                   <span ref={APBRef}>
-                    <OsnInputText
+                    <input
                       required
                       title="APB registratie"
                       defaultValue={data.APB}
@@ -1078,7 +1073,7 @@ const Search = (props) => {
                       item.name === "Apotheken (benodigdheden)"
                   ) && (
                     <span ref={APBRef}>
-                      <OsnInputText
+                      <input
                         required
                         title="APB registratie"
                         defaultValue={data.APB}
@@ -1133,7 +1128,7 @@ const Search = (props) => {
                   <label>
                     <div>
                       <span ref={FMSARef}>
-                        <OsnInputText
+                        <input
                           required
                           title="FSMA registratie"
                           defaultValue={
@@ -1199,7 +1194,7 @@ const Search = (props) => {
                     <label>
                       <div>
                         <span ref={FMSARef}>
-                          <OsnInputText
+                          <input
                             required
                             title="FSMA registratie"
                             defaultValue={
@@ -1233,7 +1228,7 @@ const Search = (props) => {
                         ].join(" ")}
                       >
                         <div>
-                          <OsnInputText
+                          <input
                             size="M"
                             required
                             title="BIV registratie"
@@ -1248,7 +1243,7 @@ const Search = (props) => {
                               )
                             }
                           />
-                          <OsnInputText
+                          <input
                             size="M"
                             required
                             icon="UserM"
@@ -1265,7 +1260,7 @@ const Search = (props) => {
                           />
                           <label>
                             <div>
-                              <OsnInputText
+                              <input
                                 size="M"
                                 icon="UserM"
                                 required
@@ -1284,7 +1279,7 @@ const Search = (props) => {
                           </label>
                           <label>
                             <div>
-                              <OsnInputText
+                              <input
                                 required
                                 size="M"
                                 icon="Cellphone"
@@ -1303,7 +1298,7 @@ const Search = (props) => {
                           </label>
                           <label className="email">
                             <div>
-                              <OsnInputText
+                              <input
                                 required
                                 size="L"
                                 icon="Mail"
@@ -1326,12 +1321,12 @@ const Search = (props) => {
                             <label
                               onClick={(e) => removeVastgoed(index, "BIV")}
                             >
-                              <Icon name="CloseCircle" />
+                              {/* <Icon name="CloseCircle" /> */}
                             </label>
                           )}
                           {data.BIV.length === index + 1 && (
                             <label onClick={(e) => addVastgoed(e, "BIV")}>
-                              <Icon name="AddCircle" />
+                              {/* <Icon name="AddCircle" /> */}
                             </label>
                           )}
                         </div>
@@ -1360,7 +1355,7 @@ const Search = (props) => {
                           <div>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   title="BIV registratie"
@@ -1379,7 +1374,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   icon="UserM"
@@ -1398,7 +1393,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   icon="UserM"
                                   required
@@ -1417,7 +1412,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="M"
                                   icon="Cellphone"
@@ -1436,7 +1431,7 @@ const Search = (props) => {
                             </label>
                             <label className="email">
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="L"
                                   icon="Mail"
@@ -1459,12 +1454,12 @@ const Search = (props) => {
                               <label
                                 onClick={(e) => removeVastgoed(index, "BIV")}
                               >
-                                <Icon name="CloseCircle" />
+                                {/* <Icon name="CloseCircle" /> */}
                               </label>
                             )}
                             {data.BIV.length === index + 1 && (
                               <label onClick={(e) => addVastgoed(e, "BIV")}>
-                                <Icon name="AddCircle" />
+                                {/* <Icon name="AddCircle" /> */}
                               </label>
                             )}
                           </div>
@@ -1486,7 +1481,7 @@ const Search = (props) => {
                         <div>
                           <label>
                             <div>
-                              <OsnInputText
+                              <input
                                 size="M"
                                 required
                                 title="EPC registratie"
@@ -1505,7 +1500,7 @@ const Search = (props) => {
                           </label>
                           <label>
                             <div>
-                              <OsnInputText
+                              <input
                                 size="M"
                                 required
                                 icon="UserM"
@@ -1524,7 +1519,7 @@ const Search = (props) => {
                           </label>
                           <label>
                             <div>
-                              <OsnInputText
+                              <input
                                 size="M"
                                 icon="UserM"
                                 required
@@ -1543,7 +1538,7 @@ const Search = (props) => {
                           </label>
                           <label>
                             <div>
-                              <OsnInputText
+                              <input
                                 required
                                 size="M"
                                 icon="Cellphone"
@@ -1562,7 +1557,7 @@ const Search = (props) => {
                           </label>
                           <label className="email">
                             <div>
-                              <OsnInputText
+                              <input
                                 required
                                 size="L"
                                 icon="Mail"
@@ -1585,12 +1580,12 @@ const Search = (props) => {
                             <label
                               onClick={(e) => removeVastgoed(index, "EPC")}
                             >
-                              <Icon name="CloseCircle" />
+                              {/* <Icon name="CloseCircle" /> */}
                             </label>
                           )}
                           {data.EPC.length === index + 1 && (
                             <label onClick={(e) => addVastgoed(e, "EPC")}>
-                              <Icon name="AddCircle" />
+                              {/* <Icon name="AddCircle" /> */}
                             </label>
                           )}
                         </div>
@@ -1619,7 +1614,7 @@ const Search = (props) => {
                           <div>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   title="EPC registratie"
@@ -1638,7 +1633,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   icon="UserM"
@@ -1657,7 +1652,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   icon="UserM"
                                   required
@@ -1676,7 +1671,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="M"
                                   icon="Cellphone"
@@ -1695,7 +1690,7 @@ const Search = (props) => {
                             </label>
                             <label className="email">
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="L"
                                   icon="Mail"
@@ -1718,12 +1713,12 @@ const Search = (props) => {
                               <label
                                 onClick={(e) => removeVastgoed(index, "EPC")}
                               >
-                                <Icon name="CloseCircle" />
+                                {/* <Icon name="CloseCircle" /> */}
                               </label>
                             )}
                             {data.EPC.length === index + 1 && (
                               <label onClick={(e) => addVastgoed(e, "EPC")}>
-                                <Icon name="AddCircle" />
+                                {/* <Icon name="AddCircle" /> */}
                               </label>
                             )}
                           </div>
@@ -1749,7 +1744,7 @@ const Search = (props) => {
                                 category.active ? "active" : "",
                               ].join(" ")}
                             >
-                              <Icon
+                              {/* <Icon
                                 className="c-selected-icon"
                                 onClick={(e) => {
                                   changeCategory(e, "KBOSUBACTIVE", index);
@@ -1757,7 +1752,7 @@ const Search = (props) => {
                                 name={[
                                   category.active ? "Checked" : "Unchecked",
                                 ]}
-                              />
+                              /> */}
                               <p
                                 onClick={(e) => {
                                   changeCategory(e, "KBOSUBACTIVE", index);
@@ -1785,13 +1780,13 @@ const Search = (props) => {
                                     category.active ? "active" : "",
                                   ].join(" ")}
                                 >
-                                  <Icon
+                                  {/* <Icon
                                     className="c-selected-icon"
                                     onClick={(e) => {
                                       changeCategory(e, "REMOVE", index);
                                     }}
                                     name="CloseCircle"
-                                  />
+                                  /> */}
 
                                   <p
                                     onClick={(e) => {
@@ -1812,7 +1807,7 @@ const Search = (props) => {
                         suggesties:
                       </p>
                       <span className="search-bar" ref={searchRef}>
-                        <OsnInputText
+                        <input
                           dropdown_result={dropdownloaded ? [...result] : []}
                           required
                           placeholder="Wens je een activiteit aan te passen of toe te voegen?"
@@ -1841,7 +1836,7 @@ const Search = (props) => {
                     <label>
                       <div>
                         <span ref={ITAARef}>
-                          <OsnInputText
+                          <input
                             required
                             title="ITAA registratie"
                             defaultValue={data.ITAA}
@@ -1866,7 +1861,7 @@ const Search = (props) => {
                       <label>
                         <div>
                           <span ref={ITAARef}>
-                            <OsnInputText
+                            <input
                               required
                               title="ITAA registratie"
                               defaultValue={data.ITAA}
@@ -1885,7 +1880,7 @@ const Search = (props) => {
                       (item.name === "Apotheken (benodigdheden)" && item.active)
                   ) && (
                     <span ref={APBRef}>
-                      <OsnInputText
+                      <input
                         required
                         title="APB registratie"
                         defaultValue={data.APB}
@@ -1907,7 +1902,7 @@ const Search = (props) => {
                         item.name === "Apotheken (benodigdheden)"
                     ) && (
                       <span ref={APBRef}>
-                        <OsnInputText
+                        <input
                           required
                           title="APB registratie"
                           defaultValue={data.APB}
@@ -1964,7 +1959,7 @@ const Search = (props) => {
                     <label>
                       <div>
                         <span ref={FMSARef}>
-                          <OsnInputText
+                          <input
                             required
                             title="FSMA registratie"
                             defaultValue={
@@ -2094,7 +2089,7 @@ const Search = (props) => {
                       <label>
                         <div>
                           <span ref={FMSARef}>
-                            <OsnInputText
+                            <input
                               required
                               title="FSMA registratie"
                               defaultValue={
@@ -2131,7 +2126,7 @@ const Search = (props) => {
                           <div>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   title="BIV registratie"
@@ -2150,7 +2145,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   icon="UserM"
@@ -2169,7 +2164,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   icon="UserM"
                                   required
@@ -2188,7 +2183,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="M"
                                   icon="Cellphone"
@@ -2207,7 +2202,7 @@ const Search = (props) => {
                             </label>
                             <label className="email">
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="L"
                                   icon="Mail"
@@ -2230,12 +2225,12 @@ const Search = (props) => {
                               <label
                                 onClick={(e) => removeVastgoed(index, "BIV")}
                               >
-                                <Icon name="CloseCircle" />
+                                {/* <Icon name="CloseCircle" /> */}
                               </label>
                             )}
                             {data.BIV.length === index + 1 && (
                               <label onClick={(e) => addVastgoed(e, "BIV")}>
-                                <Icon name="AddCircle" />
+                                {/* <Icon name="AddCircle" /> */}
                               </label>
                             )}
                           </div>
@@ -2273,7 +2268,7 @@ const Search = (props) => {
                             <div>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     size="M"
                                     required
                                     title="BIV registratie"
@@ -2292,7 +2287,7 @@ const Search = (props) => {
                               </label>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     size="M"
                                     required
                                     icon="UserM"
@@ -2311,7 +2306,7 @@ const Search = (props) => {
                               </label>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     size="M"
                                     icon="UserM"
                                     required
@@ -2330,7 +2325,7 @@ const Search = (props) => {
                               </label>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     required
                                     size="M"
                                     icon="Cellphone"
@@ -2349,7 +2344,7 @@ const Search = (props) => {
                               </label>
                               <label className="email">
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     required
                                     size="L"
                                     icon="Mail"
@@ -2372,12 +2367,12 @@ const Search = (props) => {
                                 <label
                                   onClick={(e) => removeVastgoed(index, "BIV")}
                                 >
-                                  <Icon name="CloseCircle" />
+                                  {/* <Icon name="CloseCircle" /> */}
                                 </label>
                               )}
                               {data.BIV.length === index + 1 && (
                                 <label onClick={(e) => addVastgoed(e, "BIV")}>
-                                  <Icon name="AddCircle" />
+                                  {/* <Icon name="AddCircle" /> */}
                                 </label>
                               )}
                             </div>
@@ -2413,7 +2408,7 @@ const Search = (props) => {
                             <div>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     size="M"
                                     required
                                     title="EPC registratie"
@@ -2432,7 +2427,7 @@ const Search = (props) => {
                               </label>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     size="M"
                                     required
                                     icon="UserM"
@@ -2451,7 +2446,7 @@ const Search = (props) => {
                               </label>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     size="M"
                                     icon="UserM"
                                     required
@@ -2470,7 +2465,7 @@ const Search = (props) => {
                               </label>
                               <label>
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     required
                                     size="M"
                                     icon="Cellphone"
@@ -2489,7 +2484,7 @@ const Search = (props) => {
                               </label>
                               <label className="email">
                                 <div>
-                                  <OsnInputText
+                                  <input
                                     required
                                     size="L"
                                     icon="Mail"
@@ -2512,12 +2507,12 @@ const Search = (props) => {
                                 <label
                                   onClick={(e) => removeVastgoed(index, "EPC")}
                                 >
-                                  <Icon name="CloseCircle" />
+                                  {/* <Icon name="CloseCircle" /> */}
                                 </label>
                               )}
                               {data.EPC.length === index + 1 && (
                                 <label onClick={(e) => addVastgoed(e, "EPC")}>
-                                  <Icon name="AddCircle" />
+                                  {/* <Icon name="AddCircle" /> */}
                                 </label>
                               )}
                             </div>
@@ -2545,7 +2540,7 @@ const Search = (props) => {
                           <div>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   title="EPC registratie"
@@ -2564,7 +2559,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   icon="UserM"
@@ -2583,7 +2578,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   icon="UserM"
                                   required
@@ -2602,7 +2597,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="M"
                                   icon="Cellphone"
@@ -2621,7 +2616,7 @@ const Search = (props) => {
                             </label>
                             <label className="email">
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="L"
                                   icon="Mail"
@@ -2644,12 +2639,12 @@ const Search = (props) => {
                               <label
                                 onClick={(e) => removeVastgoed(index, "EPC")}
                               >
-                                <Icon name="CloseCircle" />
+                                {/* <Icon name="CloseCircle" /> */}
                               </label>
                             )}
                             {data.EPC.length === index + 1 && (
                               <label onClick={(e) => addVastgoed(e, "EPC")}>
-                                <Icon name="AddCircle" />
+                                {/* <Icon name="AddCircle" /> */}
                               </label>
                             )}
                           </div>
@@ -2680,7 +2675,7 @@ const Search = (props) => {
                           <div>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   title="EPC registratie"
@@ -2699,7 +2694,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   required
                                   icon="UserM"
@@ -2718,7 +2713,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   size="M"
                                   icon="UserM"
                                   required
@@ -2737,7 +2732,7 @@ const Search = (props) => {
                             </label>
                             <label>
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="M"
                                   icon="Cellphone"
@@ -2756,7 +2751,7 @@ const Search = (props) => {
                             </label>
                             <label className="email">
                               <div>
-                                <OsnInputText
+                                <input
                                   required
                                   size="L"
                                   icon="Mail"
@@ -2779,12 +2774,12 @@ const Search = (props) => {
                               <label
                                 onClick={(e) => removeVastgoed(index, "EPC")}
                               >
-                                <Icon name="CloseCircle" />
+                                {/* <Icon name="CloseCircle" /> */}
                               </label>
                             )}
                             {data.EPC.length === index + 1 && (
                               <label onClick={(e) => addVastgoed(e, "EPC")}>
-                                <Icon name="AddCircle" />
+                                {/* <Icon name="AddCircle" /> */}
                               </label>
                             )}
                           </div>
@@ -2801,7 +2796,7 @@ const Search = (props) => {
         </div>
       )}
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"
@@ -2811,14 +2806,14 @@ const Search = (props) => {
             props.setTab();
           }}
         />
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"
           brderColor="main"
           onClick={(e) => {
             changePublic(e);
-            // patchData(data);
+            patchData(data);
             store.dispatch({ type: "countUp" });
             props.setTab();
           }}

@@ -1,16 +1,13 @@
 import store from "../store";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import Icon from "@identitybuilding/idb-react-iconlib";
-import { Button, OsnInputText } from "@identitybuilding/idb-react-ui-elements";
+// import Icon from "@identitybuilding/idb-react-iconlib";
+// import { Button, OsnInputText } from "@identitybuilding/idb-react-ui-elements";
 import plenny from "../library/images/plenny-point.png";
-import { updateCurrentEstablishment } from "../actions/GeneralAction";
-import { useDispatch } from "react-redux";
 
 const Hyperlink = (props) => {
   const [loaded, setLoaded] = useState(true);
   const [data, setData] = useState(props.data);
-  const dispatch = useDispatch();
 
   const websiteRef = useRef();
   const facebookRef = useRef();
@@ -20,26 +17,33 @@ const Hyperlink = (props) => {
   const twitterRef = useRef();
 
   const patchData = (data) => {
-    dispatch(updateCurrentEstablishment(data));
-    // axios
-    //   .put(
-    //     "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
-    //     {
-    //       ...data,
-    //     }
-    //   )
-    //   .then(async (res) => {
-    //     // console.log(res);
-    //     setLoaded(false);
-    //     setLoaded(true);
-    //   });
+    axios
+      .put(
+        "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
+        {
+          ...data,
+        }
+      )
+      .then(async (res) => {
+        // console.log(res);
+        setLoaded(false);
+        setLoaded(true);
+      });
   };
 
   const changeHyperlink = (value, target) => {
     let copy = data;
 
-    copy[`business_${target}_nl`] = value;
+    copy.socials[target] = value;
 
+    // copy.socials.website = websiteRef.current.value;
+    // copy.socials.facebook = facebookRef.current.value;
+    // copy.socials.instagram = instagramRef.current.value;
+    // copy.socials.youtube = youtubeRef.current.value;
+    // copy.socials.linkedin = linkedinRef.current.value;
+    // copy.socials.twitter = twitterRef.current.value;
+
+    console.log(copy.socials);
     setData(copy);
     setLoaded(false);
   };
@@ -57,14 +61,15 @@ const Hyperlink = (props) => {
         </h2>
         <div>
           <h2>Voeg jouw internet koppelingen toe.</h2>
-          <span>
+          <p>
             Toon jouw bezoekers de verschillende kanalen waar je onderneming op
             het internet kan gevonden worden.
             <br />
-            <Icon name="Info" /> Bezoek als controle je persoonlijke pagina's
-            per kanaal en kopieer de volledige link inclusief
+            {/* <Icon name="Info" />  */}
+            Bezoek als controle je persoonlijke pagina's per kanaal en kopieer
+            de volledige link inclusief
             <b className="yellow"> http of https.</b>
-          </span>
+          </p>
         </div>
       </div>
 
@@ -72,82 +77,82 @@ const Hyperlink = (props) => {
         <div className="section-container">
           <form>
             <label>
-              <OsnInputText
+              <input
                 className="website"
                 icon="Website"
-                defaultValue={props.data.business_website_nl}
+                defaultValue={props.data.socials.website}
                 title="Website"
                 onBlur={(e) => changeHyperlink(e.target.value, "website")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="facebook"
                 icon="Facebook"
-                defaultValue={props.data.business_facebook_nl}
+                defaultValue={props.data.socials.facebook}
                 title="Facebook"
                 onBlur={(e) => changeHyperlink(e.target.value, "facebook")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="instagram"
                 icon="Instagram"
-                defaultValue={props.data.business_instagram_nl}
+                defaultValue={props.data.socials.instagram}
                 title="Instagram"
                 onBlur={(e) => changeHyperlink(e.target.value, "instagram")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="youtube"
                 icon="Youtube"
-                defaultValue={props.data.business_youtube_nl}
+                defaultValue={props.data.socials.youtube}
                 title="YouTube"
                 onBlur={(e) => changeHyperlink(e.target.value, "youtube")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="linkedin"
                 icon="Linkedin"
-                defaultValue={props.data.business_linkedin_nl}
+                defaultValue={props.data.socials.linkedin}
                 title="Linkedin"
                 onBlur={(e) => changeHyperlink(e.target.value, "linkedin")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="twitter"
                 icon="Twitter"
-                defaultValue={props.data.business_twitter_nl}
+                defaultValue={props.data.socials.twitter}
                 title="Twitter"
-                onBlur={(e) => changeHyperlink(e.target.value, "twitter")}
+                onBlur={(e) => changeHyperlink(e.target.value, "facebook")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="tiktok"
-                icon="TikTok"
-                defaultValue={props.data.business_tiktok_nl}
+                icon="Tiktok"
+                defaultValue={props.data.socials.tiktok}
                 title="TikTok"
                 onBlur={(e) => changeHyperlink(e.target.value, "tiktok")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="snapchat"
                 icon="Snapchat"
-                defaultValue={props.data.business_snapchat_nl}
+                defaultValue={props.data.socials.snapchat}
                 title="Snapchat"
                 onBlur={(e) => changeHyperlink(e.target.value, "snapchat")}
               />
             </label>
             <label>
-              <OsnInputText
+              <input
                 className="spotify"
-                icon="Spotify"
-                defaultValue={props.data.business_spotify_nl}
+                icon="spotify"
+                defaultValue={props.data.socials.spotify}
                 title="Spotify"
                 onBlur={(e) => changeHyperlink(e.target.value, "spotify")}
               />
@@ -159,7 +164,7 @@ const Hyperlink = (props) => {
         </div>
       )}
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"
@@ -169,7 +174,7 @@ const Hyperlink = (props) => {
             props.setTab();
           }}
         />
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"

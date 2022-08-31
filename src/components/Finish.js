@@ -1,41 +1,10 @@
-import Icon from "@identitybuilding/idb-react-iconlib";
-import { Button, OsnInputText } from "@identitybuilding/idb-react-ui-elements";
+// import Icon from "@identitybuilding/idb-react-iconlib";
+// import { Button } from "@identitybuilding/idb-react-ui-elements";
 import store from "../store/index";
 
 import plennyParty from "../library/images/plenny-party.png";
-import { useEffect, useRef, useState } from "react";
 
 const Finish = (props) => {
-  const [sug, setSug] = useState([]);
-  const inputRef = useRef();
-  const [loaded, setLoaded] = useState(false);
-
-  const addSug = (e, index) => {
-    let copy = sug;
-
-    if (inputRef.current.childNodes[0].childNodes[1].value.length !== 0) {
-      copy.push(inputRef.current.childNodes[0].childNodes[1].value);
-    }
-
-    inputRef.current.childNodes[0].childNodes[1].value = "";
-
-    setSug(copy);
-    setLoaded(false);
-  };
-
-  const removeSug = (e, index) => {
-    let copy = sug;
-
-    copy.splice(index, 1);
-
-    setSug(copy);
-    setLoaded(false);
-  };
-
-  useEffect(() => {
-    setLoaded(true);
-  });
-
   return (
     <section className="c-finish">
       <div className="intro">
@@ -63,13 +32,13 @@ const Finish = (props) => {
             te groeien.
             <br />
             Wij zijn nog niet volledig klaar met het realiseren van onze eigen
-            ideeën en staan ook open voor jouw eventuele inbreng. Daag jij ons
+            ideeën en staan ook open voor jouw eventuele inbreng.Daag jij ons
             uit?
           </p>
           <p>
             Klik op de volgende knop om jouw volledige publicatie te bekijken.
           </p>
-          <Button
+          <button
             text="TOON MIJN BUSINESS PAGE"
             type="sub"
             size="S"
@@ -100,89 +69,65 @@ const Finish = (props) => {
           <div className="share__container">
             <button
               onClick={(e) => {
-                if (props.data.business_facebook_nl !== null) {
-                  window.open(props.data.business_facebook_nl, "_blank");
+                if (props.data.socials.facebook.length !== 0) {
+                  window.open(props.data.socials.facebook, "_blank");
                 } else {
                   window.open("https://www.facebook.com/", "_blank");
                 }
               }}
               className="share facebook"
             >
-              <Icon name="Facebook" />
+              {/* <Icon name="Facebook" /> */}
             </button>
             <button
               onClick={(e) => {
-                if (props.data.business_instagram_nl !== null) {
-                  window.open(props.data.business_instagram_nl, "_blank");
+                if (props.data.socials.instagram.length !== 0) {
+                  window.open(props.data.socials.instagram, "_blank");
                 } else {
                   window.open("https://www.instagram.com", "_blank");
                 }
               }}
               className="share instagram"
             >
-              <Icon name="Instagram" />
+              {/* <Icon name="Instagram" /> */}
             </button>
             <button
               onClick={(e) => {
-                if (props.data.business_linkedin_nl !== null) {
-                  window.open(props.data.business_linkedin_nl, "_blank");
+                if (props.data.socials.linkedin.length !== 0) {
+                  window.open(props.data.socials.linkedin, "_blank");
                 } else {
                   window.open("https://nl.linkedin.com/", "_blank");
                 }
               }}
               className="share linkedin"
             >
-              <Icon name="Linkedin" />
+              {/* <Icon name="Linkedin" /> */}
             </button>
             <button
               onClick={(e) => {
-                if (props.data.business_twitter_nl !== null) {
-                  window.open(props.data.business_twitter_nl, "_blank");
+                if (props.data.socials.twitter.length !== 0) {
+                  window.open(props.data.socials.twitter, "_blank");
                 } else {
                   window.open("https://twitter.com/home", "_blank");
                 }
               }}
               className="share twitter"
             >
-              <Icon name="Twitter" />
+              {/* <Icon name="Twitter" /> */}
             </button>
             <button
               onClick={(e) => {
-                if (props.data.business_youtube_nl !== null) {
-                  window.open(props.data.business_youtube_nl, "_blank");
+                if (props.data.socials.youtube.length !== 0) {
+                  window.open(props.data.socials.youtube, "_blank");
                 } else {
                   window.open("https://www.youtube.com", "_blank");
                 }
               }}
               className="share youtube"
             >
-              <Icon name="Youtube" />
+              {/* <Icon name="Youtube" /> */}
             </button>
           </div>
-          {loaded && (
-            <div className="extra">
-              <div ref={inputRef} className="input-container">
-                <OsnInputText
-                  name={"extra"}
-                  icon="Mail"
-                  size="M"
-                  placeholder="Voeg een email adres toe van een collega ondernemer (optioneel)"
-                />
-                <Icon onClick={(e) => addSug(e)} name="AddCircle" />
-              </div>
-              <div className="button-container">
-                {sug.map((item, index) => (
-                  <button className={["select-button", "active"].join(" ")}>
-                    <Icon
-                      name="CloseCircle"
-                      onClick={(e) => removeSug(e, index)}
-                    />
-                    <p>{item}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
         <div className="image-container">
           <img
@@ -193,7 +138,7 @@ const Finish = (props) => {
         </div>
       </section>
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"

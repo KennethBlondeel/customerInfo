@@ -32,11 +32,7 @@ function App() {
   const current_establishment = useSelector(
     (state) => state.general.current_establishment
   );
-  // const [data, setData] = useState([]);
-
-  const [oldData, setOldData] = useState([]);
-
-  const [data, setData] = useState(current_establishment);
+  const [data, setData] = useState([]);
   const [tab, isTab] = useState();
   // const [faciliteiten, setFaciliteiten] = useState([])
   const history = useHistory();
@@ -66,11 +62,7 @@ function App() {
         "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json"
       )
       .then((res) => {
-        setOldData(res.data);
-      })
-      .then(() => {
-        setData(current_establishment);
-
+        setData(res.data);
         isLoaded(true);
       });
 
@@ -132,10 +124,7 @@ function App() {
         <Fragment>
           <Nav />
           <div className="main">
-            <h1>
-              Beste {data.first_name[0].toUpperCase()}
-              {data.first_name.slice(1)}
-            </h1>
+            <h1>Beste {data.prive_prename[0].toUpperCase()}{data.prive_prename.slice(1)}</h1>
             <p>
               Klaar om samen te werken aan jouw{" "}
               <strong>'lokale online visibiliteit'</strong>?
@@ -427,9 +416,9 @@ function App() {
                     <Search
                       setTab={setTab}
                       createNotification={createNotification}
-                      data={oldData}
-                      category={oldData.category}
-                      mainCategory={oldData.main_category}
+                      data={data}
+                      category={data.category}
+                      mainCategory={data.main_category}
                     />
                   )}
                   {localStorage.getItem("tab") === "3" && (
@@ -459,15 +448,16 @@ function App() {
                     <Tijdschema
                       setTab={setTab}
                       createNotification={createNotification}
-                      data={oldData}
+                      data={data}
                     />
                   )}
                   {localStorage.getItem("tab") === "10" && (
                     <Contest setTab={setTab} data={data} />
                   )}
                   {localStorage.getItem("tab") === "11" && (
-                    <Finish setTab={setTab} data={oldData} />
+                    <Finish setTab={setTab} data={data} />
                   )}
+                  {localStorage.getItem("tab") === "12" && <div />}
                 </div>
               )}
             </div>

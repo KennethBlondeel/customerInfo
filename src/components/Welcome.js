@@ -1,36 +1,33 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { updateCurrentEstablishment } from "../actions/GeneralAction";
 
-import {
-  Button,
-  OsnCheckbox,
-  OsnSelect,
-} from "@identitybuilding/idb-react-ui-elements";
+// import {
+//   Button,
+//   OsnCheckbox,
+//   OsnSelect,
+// } from "@identitybuilding/idb-react-ui-elements";
 
 import store from "../store/index";
-import Icon from "@identitybuilding/idb-react-iconlib";
+// import Icon from "@identitybuilding/idb-react-iconlib";
 
 const Welcome = (props) => {
   const [data, setData] = useState(props.data);
   const [loaded, setLoaded] = useState(props.data);
 
-  const dispatch = useDispatch();
+  let date = Date().toString().slice(0, 21);
 
   const patchData = (data) => {
-    dispatch(updateCurrentEstablishment(data));
-    // axios
-    //   .put(
-    //     "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
-    //     {
-    //       ...data,
-    //     }
-    //   )
-    //   .then(async (res) => {
-    //     setLoaded(false);
-    //     setLoaded(true);
-    //   });
+    axios
+      .put(
+        "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
+        {
+          ...data,
+        }
+      )
+      .then(async (res) => {
+        setLoaded(false);
+        setLoaded(true);
+      });
   };
 
   const changeData = (value, type) => {
@@ -47,7 +44,7 @@ const Welcome = (props) => {
 
     patchData(data);
 
-    if (data.accept_GDPR && data.accept_terms && data.active) {
+    if (data.GDPR && data.conditions && data.active) {
       store.dispatch({ type: "countUp", data: "im gone test" });
     }
 
@@ -69,7 +66,7 @@ const Welcome = (props) => {
     let copy = data;
 
     if (copy.active) {
-      copy.enter_competiton = !copy.enter_competiton;
+      copy.contest.participation = !copy.contest.participation;
     } else {
       props.createNotification(
         "warning",
@@ -113,11 +110,10 @@ const Welcome = (props) => {
                   let copy = data;
                   copy.active = !copy.active;
                   if (!copy.active) {
-                    copy.enter_competiton = false;
+                    copy.contest.participation = false;
                   }
                   setData(copy);
-                  setLoaded(false);
-                  // patchData(data);
+                  patchData(data);
                 }}
                 className={["option", data.active ? "active" : ""].join(" ")}
               >
@@ -130,17 +126,18 @@ const Welcome = (props) => {
                     " "
                   )}
                 >
-                  <Icon name="Info" />
+                  {/* <Icon name="Info" /> */}
                   <p className="typo">Uw onderneming wordt gedeactiveerd :)</p>
                 </div>
               )}
               {data.active && (
                 <div
+                  id={data.active}
                   className={[data.active ? "active" : "", "false-info"].join(
                     " "
                   )}
                 >
-                  <Icon name="Info" />
+                  {/* <Icon name="Info" /> */}
                   <p className="typo">Nu kunnen we verder!</p>
                 </div>
               )}
@@ -148,29 +145,26 @@ const Welcome = (props) => {
             {data.active && (
               <form className="conditions">
                 <label>
-                  <OsnCheckbox
-                    onChange={(e) => changeData(e, "accept_GDPR")}
-                    name="accept_GDPR"
-                    checked={data.accept_GDPR}
+                  <input
+                    onChange={(e) => changeData(e, "GDPR")}
+                    name="GDPR"
+                    checked={data.GDPR}
                     type="checkbox"
                     value="Ik aanvaard de verwerking van mijn gegevens volgens de GDPR."
                   />
                 </label>
-                <p className="detail">
-                  Laatst aanvaard op: {data.last_accepted_GDPR}
-                </p>
-                <OsnCheckbox
-                  checked={data.accept_terms}
-                  name="accept_terms"
+                <p className="detail">Laatst aanvaard op: {date}</p>
+                <input
+                  checked={data.conditions}
+                  name="conditions"
                   onChange={(e) => {
-                    changeData(e, "accept_terms");
+                    changeData(e, "conditions");
                   }}
                   // value={` Ik aanvaard de algemene voorwaarden.
                   // `}
                   value={[
-                    <span key={"text before title"}>Ik aanvaard de&nbsp;</span>,
+                    <span>Ik aanvaard de&nbsp;</span>,
                     <a
-                      key={"link"}
                       href="https://www.ondernemersnetwerk.be/privacy/policy#terms"
                       target="_blank"
                       rel="noreferrer"
@@ -179,23 +173,21 @@ const Welcome = (props) => {
                     </a>,
                   ]}
                 />
-                <p className="detail">
-                  Laatst aanvaard op: {data.last_accepted_terms}
-                </p>
-                <OsnCheckbox
-                  checked={data.accept_share_with_municipality}
+                <p className="detail">Laatst aanvaard op: {date}</p>
+                <input
+                  checked={data.dataAgree}
                   type="checkbox"
-                  name="accept_share_with_municipality"
+                  name="dataAgree"
                   value="Ik aanvaard dat mijn gegevens - in combinatie met
                 100procentlokaal - gedeeld worden met mijn stad of gemeente."
                   onChange={(e) => {
-                    changeData(e, "accept_share_with_municipality");
+                    changeData(e, "dataAgree");
                   }}
                 />
                 <label className="select">
                   Vind je de ondersteuning van dit initiatief door jouw stad of
                   gemeente een goed idee?
-                  <OsnSelect
+                  {/* <OsnSelect
                     onChange={(e) => changeSelect(e)}
                     active={
                       data.support_city_meaning === 0
@@ -218,7 +210,7 @@ const Welcome = (props) => {
                         name: "Ik heb geen mening over dit project",
                       },
                     ]}
-                  />
+                  /> */}
                 </label>
               </form>
             )}
@@ -231,33 +223,34 @@ const Welcome = (props) => {
               onClick={() => {
                 changeContest();
               }}
-              className={["option", data.enter_competiton ? "active" : ""].join(
-                " "
-              )}
+              className={[
+                "option",
+                data.contest.participation ? "active" : "",
+              ].join(" ")}
             >
               <p className="typo">JA</p>
               <p className="typo">NEE</p>
             </div>
-            {!data.enter_competiton && (
+            {!data.contest.participation && (
               <div
                 className={[
-                  data.enter_competiton ? "active" : "",
+                  data.contest.participation ? "active" : "",
                   "false-info",
                 ].join(" ")}
               >
-                <Icon name="Info" />
+                {/* <Icon name="Info" /> */}
                 <p className="typo">Je weet niet wat je mist :)</p>
               </div>
             )}
-            {data.enter_competiton && (
+            {data.contest.participation && (
               <div
-                id={data.enter_competiton}
+                id={data.contest.participation}
                 className={[
-                  data.enter_competiton ? "active" : "",
+                  data.contest.participation ? "active" : "",
                   "false-info",
                 ].join(" ")}
               >
-                <Icon name="Info" />
+                {/* <Icon name="Info" /> */}
                 <p className="typo">Fantastisch!</p>
               </div>
             )}
@@ -270,7 +263,7 @@ const Welcome = (props) => {
             </p>
             <p>
               Bovendien doet iedere ondernemer die deelneemt ook automatisch mee
-              met de grote wedstrijd. Elke 100ste ondernemer wint een
+              voor de grote wedstrijd. Elke 100ste ondernemer wint een
               jaarabonnement voor een compleet dienstenpakket ter waarde van €
               1600.
             </p>
@@ -293,12 +286,10 @@ const Welcome = (props) => {
       <div
         className={[
           "button-container",
-          !data.accept_GDPR || !data.accept_terms || !data.active
-            ? "disabled"
-            : "",
+          !data.GDPR || !data.conditions || !data.active ? "disabled" : "",
         ].join(" ")}
       >
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"

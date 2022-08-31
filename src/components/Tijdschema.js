@@ -1,8 +1,11 @@
 import { useState, Fragment, useEffect } from "react";
 import axios from "axios";
 import store from "../store";
-import Icon from "@identitybuilding/idb-react-iconlib";
-import { Button, OsnCheckbox } from "@identitybuilding/idb-react-ui-elements";
+// import Icon from "@identitybuilding/idb-react-iconlib";
+// import {
+//   Button,
+//   input,
+// } from "@identitybuilding/idb-react-ui-elements";
 
 const Tijdschema = (props) => {
   const [data, setData] = useState(props.data);
@@ -647,13 +650,13 @@ const Tijdschema = (props) => {
                 gesloten.
               </p>
               <h5>VOORBEELD:</h5>
-              <p className="example">
+              <p>
                 Maandag tot vrijdag: 08:00 - 12:30 & 13:00 - 17:00
                 <br /> Gesloten op zaterdag en zondag
               </p>
             </div>
             <div className="add-container">
-              <Icon name="AddCircle" onClick={(e) => addTimetable("easy")} />
+              {/* <Icon name="AddCircle" onClick={(e) => addTimetable("easy")} /> */}
             </div>
           </div>
           <div className="add-timetable">
@@ -664,17 +667,17 @@ const Tijdschema = (props) => {
                 verschillende uren.
               </p>
               <h5>VOORBEELD:</h5>
-              <p className="example">
+              <p>
                 Maandag, woensdag & vrijdag: 08:00 - 12:30 <br />
                 Dinsdag & donderdag: 08:30 - 17:00 <br /> Gesloten op zaterdag &
                 zondag
               </p>
             </div>
             <div className="add-container">
-              <Icon
+              {/* <Icon
                 name="AddCircle"
                 onClick={(e) => addTimetable("complicated")}
-              />
+              /> */}
             </div>
           </div>
         </section>
@@ -811,8 +814,9 @@ const Tijdschema = (props) => {
                                         )}
 
                                         {data.timetables[index].table.global
-                                          .length !== 1 && (
-                                          <Icon
+                                          .length !== 1 &&
+                                          {
+                                            /* <Icon
                                             name="Bin"
                                             onClick={(e) =>
                                               removeTime(
@@ -823,8 +827,8 @@ const Tijdschema = (props) => {
                                               )
                                             }
                                             key={rowIndex}
-                                          />
-                                        )}
+                                          /> */
+                                          }}
 
                                         {data.timetables[index].table.global[
                                           rowIndex
@@ -844,12 +848,12 @@ const Tijdschema = (props) => {
                                             src="https://static.thenounproject.com/png/3144348-200.png"
                                           />
                                         )}
-                                        <Icon
+                                        {/* <Icon
                                           onClick={(e) =>
                                             AddTime(e, index, "global")
                                           }
                                           name="AddCircle"
-                                        />
+                                        /> */}
                                       </div>
                                       {data.timetables[index].table.global[
                                         rowIndex
@@ -977,12 +981,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "monday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.monday[
                                           rowIndex
@@ -1095,12 +1099,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "monday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.monday[
                                           rowIndex
@@ -1177,7 +1181,7 @@ const Tijdschema = (props) => {
                             <td>
                               {data.timetables[index].table.monday.length <
                                 2 && (
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.monday[0]
                                       .closed
@@ -1196,8 +1200,8 @@ const Tijdschema = (props) => {
                                   !data.timetables[index].global) && (
                                   <span className="row-container">
                                     {data.timetables[index].table.monday.map(
-                                      (item, rowIndex) => (
-                                        <Icon
+                                      (item, rowIndex) => ({
+                                        /* <Icon
                                           name="Bin"
                                           onClick={(e) =>
                                             removeTime(
@@ -1208,8 +1212,8 @@ const Tijdschema = (props) => {
                                             )
                                           }
                                           key={rowIndex}
-                                        />
-                                      )
+                                        /> */
+                                      })
                                     )}
                                   </span>
                                 )}
@@ -1217,7 +1221,7 @@ const Tijdschema = (props) => {
 
                             {data.timetables[index].global && (
                               <td>
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.monday[0]
                                       .afwijkend
@@ -1324,12 +1328,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "tuesday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.tuesday[
                                           rowIndex
@@ -1441,12 +1445,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "tuesday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.tuesday[
                                           rowIndex
@@ -1521,7 +1525,7 @@ const Tijdschema = (props) => {
                             <td>
                               {data.timetables[index].table.tuesday.length <
                                 2 && (
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.tuesday[0]
                                       .closed
@@ -1541,8 +1545,8 @@ const Tijdschema = (props) => {
                                   !data.timetables[index].global) && (
                                   <span className="row-container">
                                     {data.timetables[index].table.tuesday.map(
-                                      (item, rowIndex) => (
-                                        <Icon
+                                      (item, rowIndex) => ({
+                                        /* <Icon
                                           name="Bin"
                                           onClick={(e) =>
                                             removeTime(
@@ -1553,15 +1557,15 @@ const Tijdschema = (props) => {
                                             )
                                           }
                                           key={rowIndex}
-                                        />
-                                      )
+                                        /> */
+                                      })
                                     )}
                                   </span>
                                 )}
                             </td>
                             {data.timetables[index].global && (
                               <td>
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.tuesday[0]
                                       .afwijkend
@@ -1668,12 +1672,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "wednesday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.wednesday[
                                           rowIndex
@@ -1786,12 +1790,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "wednesday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.wednesday[
                                           rowIndex
@@ -1869,7 +1873,7 @@ const Tijdschema = (props) => {
                             <td>
                               {data.timetables[index].table.wednesday.length <
                                 2 && (
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.wednesday[0]
                                       .closed
@@ -1889,8 +1893,8 @@ const Tijdschema = (props) => {
                                   !data.timetables[index].global) && (
                                   <span className="row-container">
                                     {data.timetables[index].table.wednesday.map(
-                                      (item, rowIndex) => (
-                                        <Icon
+                                      (item, rowIndex) => ({
+                                        /* <Icon
                                           name="Bin"
                                           onClick={(e) =>
                                             removeTime(
@@ -1901,15 +1905,15 @@ const Tijdschema = (props) => {
                                             )
                                           }
                                           key={rowIndex}
-                                        />
-                                      )
+                                        /> */
+                                      })
                                     )}
                                   </span>
                                 )}
                             </td>
                             {data.timetables[index].global && (
                               <td>
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.wednesday[0]
                                       .afwijkend
@@ -2008,12 +2012,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "thursday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.thursday[
                                           rowIndex
@@ -2124,12 +2128,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "thursday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.thursday[
                                           rowIndex
@@ -2207,7 +2211,7 @@ const Tijdschema = (props) => {
                             <td>
                               {data.timetables[index].table.thursday.length <
                                 2 && (
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.thursday[0]
                                       .closed
@@ -2227,8 +2231,8 @@ const Tijdschema = (props) => {
                                   !data.timetables[index].global) && (
                                   <span className="row-container">
                                     {data.timetables[index].table.thursday.map(
-                                      (item, rowIndex) => (
-                                        <Icon
+                                      (item, rowIndex) => ({
+                                        /* <Icon
                                           name="Bin"
                                           onClick={(e) =>
                                             removeTime(
@@ -2239,8 +2243,8 @@ const Tijdschema = (props) => {
                                             )
                                           }
                                           key={rowIndex}
-                                        />
-                                      )
+                                        /> */
+                                      })
                                     )}
                                   </span>
                                 )}
@@ -2248,7 +2252,7 @@ const Tijdschema = (props) => {
 
                             {data.timetables[index].global && (
                               <td>
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.thursday[0]
                                       .afwijkend
@@ -2350,12 +2354,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "friday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.friday[
                                           rowIndex
@@ -2467,12 +2471,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "friday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.friday[
                                           rowIndex
@@ -2549,7 +2553,7 @@ const Tijdschema = (props) => {
                             <td>
                               {data.timetables[index].table.friday.length <
                                 2 && (
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.friday[0]
                                       .closed
@@ -2568,8 +2572,8 @@ const Tijdschema = (props) => {
                                   !data.timetables[index].global) && (
                                   <span className="row-container">
                                     {data.timetables[index].table.friday.map(
-                                      (item, rowIndex) => (
-                                        <Icon
+                                      (item, rowIndex) => ({
+                                        /* <Icon
                                           name="Bin"
                                           onClick={(e) =>
                                             removeTime(
@@ -2580,15 +2584,15 @@ const Tijdschema = (props) => {
                                             )
                                           }
                                           key={rowIndex}
-                                        />
-                                      )
+                                        /> */
+                                      })
                                     )}
                                   </span>
                                 )}
                             </td>
                             {data.timetables[index].global && (
                               <td>
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.friday[0]
                                       .afwijkend
@@ -2688,12 +2692,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "saturday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.saturday[
                                           rowIndex
@@ -2804,12 +2808,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "saturday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.saturday[
                                           rowIndex
@@ -2886,7 +2890,7 @@ const Tijdschema = (props) => {
                             <td>
                               {data.timetables[index].table.saturday.length <
                                 2 && (
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.saturday[0]
                                       .closed
@@ -2906,8 +2910,8 @@ const Tijdschema = (props) => {
                                   !data.timetables[index].global) && (
                                   <span className="row-container">
                                     {data.timetables[index].table.saturday.map(
-                                      (item, rowIndex) => (
-                                        <Icon
+                                      (item, rowIndex) => ({
+                                        /* <Icon
                                           name="Bin"
                                           onClick={(e) =>
                                             removeTime(
@@ -2918,15 +2922,15 @@ const Tijdschema = (props) => {
                                             )
                                           }
                                           key={rowIndex}
-                                        />
-                                      )
+                                        /> */
+                                      })
                                     )}
                                   </span>
                                 )}
                             </td>
                             {data.timetables[index].global && (
                               <td>
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.saturday[0]
                                       .afwijkend
@@ -3028,12 +3032,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "sunday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.sunday[
                                           rowIndex
@@ -3145,12 +3149,12 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             onClick={(e) =>
                                               AddTime(e, index, "sunday")
                                             }
                                             name="AddCircle"
-                                          />
+                                          /> */}
                                         </div>
                                         {data.timetables[index].table.sunday[
                                           rowIndex
@@ -3225,7 +3229,7 @@ const Tijdschema = (props) => {
                             <td>
                               {data.timetables[index].table.sunday.length <
                                 2 && (
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.sunday[0]
                                       .closed
@@ -3244,8 +3248,8 @@ const Tijdschema = (props) => {
                                   !data.timetables[index].global) && (
                                   <span className="row-container">
                                     {data.timetables[index].table.sunday.map(
-                                      (item, rowIndex) => (
-                                        <Icon
+                                      (item, rowIndex) => ({
+                                        /* <Icon
                                           name="Bin"
                                           onClick={(e) =>
                                             removeTime(
@@ -3256,8 +3260,8 @@ const Tijdschema = (props) => {
                                             )
                                           }
                                           key={rowIndex}
-                                        />
-                                      )
+                                        /> */
+                                      })
                                     )}
                                   </span>
                                 )}
@@ -3265,7 +3269,7 @@ const Tijdschema = (props) => {
 
                             {data.timetables[index].global && (
                               <td>
-                                <OsnCheckbox
+                                <input
                                   checked={
                                     data.timetables[index].table.sunday[0]
                                       .afwijkend
@@ -3364,7 +3368,7 @@ const Tijdschema = (props) => {
                                               src="https://static.thenounproject.com/png/3144348-200.png"
                                             />
                                           )}
-                                          <Icon
+                                          {/* <Icon
                                             name="AddCircle"
                                             onClick={(e) =>
                                               addPeriode(
@@ -3374,10 +3378,11 @@ const Tijdschema = (props) => {
                                                 periodeIndex
                                               )
                                             }
-                                          />
+                                          /> */}
                                           {data.timetables[index].periode_list
-                                            .length !== 1 && (
-                                            <Icon
+                                            .length !== 1 &&
+                                            {
+                                              /* <Icon
                                               name="Bin"
                                               onClick={(e) =>
                                                 addPeriode(
@@ -3387,8 +3392,8 @@ const Tijdschema = (props) => {
                                                   periodeIndex
                                                 )
                                               }
-                                            />
-                                          )}
+                                            /> */
+                                            }}
                                         </div>
                                         {item.message && (
                                           <textarea
@@ -3415,7 +3420,7 @@ const Tijdschema = (props) => {
                       </table>
                     </div>
                     <div className="c-timetables__bin">
-                      <Icon name="Bin" onClick={(e) => deleteTable(e, index)} />
+                      {/* <Icon name="Bin" onClick={(e) => deleteTable(e, index)} /> */}
                     </div>
                   </div>
                 ))}
@@ -3426,7 +3431,7 @@ const Tijdschema = (props) => {
         )}
       </div>
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"
@@ -3436,13 +3441,13 @@ const Tijdschema = (props) => {
             props.setTab();
           }}
         />
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"
           brderColor="main"
           onClick={(e) => {
-            // patchData(data);
+            patchData(data);
             store.dispatch({ type: "countUp" });
             props.setTab();
           }}

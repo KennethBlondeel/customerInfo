@@ -11,11 +11,11 @@ import Main from "./Main";
 import axios from "axios";
 
 import "./index.css";
-import "@identitybuilding/idb-react-ui-elements/dist/styles/Colors.css";
+// import "@identitybuilding/idb-react-ui-elements/dist/styles/Colors.css";
 
 const Environment = ({}) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/customerInfo_new">
       <Switch>
         <Route exact path="/">
           <Main />

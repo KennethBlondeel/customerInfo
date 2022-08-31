@@ -2,32 +2,28 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import store from "../store";
 import plenny from "../library/images/plenny-point.png";
-import { Button, OsnCheckbox } from "@identitybuilding/idb-react-ui-elements";
-import { updateCurrentEstablishment } from "../actions/GeneralAction";
-import { useDispatch } from "react-redux";
+// import { Button, OsnCheckbox } from "@identitybuilding/idb-react-ui-elements";
 
 const Kadobon = (props) => {
   const [data, setData] = useState(props.data);
   const [loaded, setLoaded] = useState(true);
-  const dispatch = useDispatch();
 
   const patchData = (data) => {
-    dispatch(updateCurrentEstablishment(data));
-    // axios
-    //   .put(
-    //     "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
-    //     {
-    //       ...data,
-    //     }
-    //   )
-    //   .then(async (res) => {
-    //     // console.log(res);
-    //   });
+    axios
+      .put(
+        "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
+        {
+          ...data,
+        }
+      )
+      .then(async (res) => {
+        // console.log(res);
+      });
   };
 
   const changeKadobon = () => {
     let copy = data;
-    copy.allow_local_voucher = !copy.allow_local_voucher;
+    copy.bon.accept = !copy.bon.accept;
     setData(copy);
     setLoaded(!loaded);
   };
@@ -53,7 +49,7 @@ const Kadobon = (props) => {
             <br />
             <p>Meer informatie kan bekeken worden op onderstaande link:</p>
             <div className="c-kadobon__info">
-              <Button
+              <button
                 text={data.bon.name}
                 type="sub"
                 size="S"
@@ -66,8 +62,8 @@ const Kadobon = (props) => {
             </div>
 
             <div>
-              <OsnCheckbox
-                checked={data.allow_local_voucher}
+              <input
+                checked={data.bon.accept}
                 name="accept"
                 onChange={(e) => {
                   changeKadobon();
@@ -83,7 +79,7 @@ const Kadobon = (props) => {
       )}
 
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"
@@ -93,7 +89,7 @@ const Kadobon = (props) => {
             props.setTab();
           }}
         />
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"

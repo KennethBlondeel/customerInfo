@@ -9,7 +9,7 @@ import {
 } from "./actions/GeneralAction";
 import plennypoint from "./library/images/plenny-point-2.png";
 
-import Icon from "@identitybuilding/idb-react-iconlib";
+// import Icon from "@identitybuilding/idb-react-iconlib";
 
 const Login = () => {
   const btwRef = useRef("BE0718.600.051");
@@ -321,7 +321,7 @@ const Login = () => {
                   </p>
                   <div className="data-container">
                     <div className="adres">
-                      <Icon name="Mapmarker" />
+                      {/* <Icon name="Mapmarker" /> */}
                       <p>
                         {data.address.streetname} {data.address.house_number}{" "}
                         <br />
@@ -331,21 +331,24 @@ const Login = () => {
                       </p>
                     </div>
                     <span>
-                      <Icon name="Phone" />
+                      {/* <Icon name="Phone" /> */}
                       <p>{data.contact.phone}</p>
                     </span>
                     <span>
-                      <Icon name="Fax" />
+                      {/* <Icon name="Fax" /> */}
                       <p>{data.contact.phone}</p>
                     </span>
                   </div>
                   <div className="contact-button">
                     <span>
-                      <Icon name="Website" />
+                      {/* <Icon name="Website" /> */}
                       Bezoek website
                     </span>
                     <span>
-                      Ontdek meer <Icon name="ArrowRight" />
+                      Ontdek meer
+                      {/* <Icon name="ArrowRight" 
+
+                      /> */}
                     </span>
                   </div>
                 </div>
@@ -358,7 +361,7 @@ const Login = () => {
                   <div className="info-card">
                     <div className="adres-line">
                       <span>
-                        <Icon name="ArrowRight" />
+                        {/* <Icon name="ArrowRight" /> */}
                         Adres (
                         <a
                           target="_blank"
@@ -372,7 +375,7 @@ const Login = () => {
                       </span>
                     </div>
                     <span>
-                      <Icon name="ArrowRight" />
+                      {/* <Icon name="ArrowRight" /> */}
                       Telefoon of mobiel (
                       <a
                         target="_blank"
@@ -385,7 +388,7 @@ const Login = () => {
                       )
                     </span>
                     <span>
-                      <Icon name="ArrowRight" />
+                      {/* <Icon name="ArrowRight" /> */}
                       Fax (niet verplicht)
                     </span>
                   </div>
@@ -394,19 +397,12 @@ const Login = () => {
               <div className="bottom">
                 <p className="email">
                   E-mail adres (
-                  <a
-                    href="https://www.ejustice.just.fgov.be/cgi_loi/loi_a1.pl?language=nl&la=N&cn=2019032309&table_name=wet&&caller=list&N&fromtab=wet&tri=dd+AS+RANK&rech=1&numero=1&sql=(text+contains+(%27%27))#Art.2:19"
-                    target="_blank"
-                    className="yellow"
-                  >
-                    is wettelijk verplicht
-                  </a>
-                  )
-                  <Icon name="ArrowRight" />
+                  <span className="yellow">wettelijk verplicht</span>)
+                  {/* <Icon name="ArrowRight" /> */}
                   <span>******@*************** .be</span>
                 </p>
                 <span className="help">
-                  <Icon name="Info" />
+                  {/* <Icon name="Info" /> */}
                   Ondanks deze verplichting zijn wij erin geslaagd om met FOD
                   Economie tot een vergelijk te komen en{" "}
                   <b className="yellow">tonen</b> wij, om SPAM te voorkomen,{" "}

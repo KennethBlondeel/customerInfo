@@ -4,43 +4,13 @@
 }
 
 :root {
-  --spotify: #1ed760;
-  --new-instagram: radial-gradient(
-      circle farthest-corner at 28% 100%,
-      #fcdf8f 0%,
-      #fbd377 10%,
-      #fa8e37 22%,
-      #f73344 35%,
-      transparent 65%
-    ),
-    linear-gradient(145deg, #3051f1 10%, #c92bb7 70%);
-}
-
-body {
-  overflow-y: overlay;
+  --spotify: #1db954;
 }
 
 .App {
   display: flex;
   flex-direction: row;
   font-family: "heeboLight", sans-serif;
-}
-body::-webkit-scrollbar {
-  width: 12px;
-  z-index: 1;
-  position: absolute;
-  left: 0;
-}
-
-body::-webkit-scrollbar-track {
-  background-color: var(--grey-20);
-  z-index: 1;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--grey-50);
-  border-radius: 50px;
-  border: 2px solid var(--grey-20);
 }
 
 .typo {
@@ -119,8 +89,7 @@ button {
 
   &.share {
     padding: 0em !important;
-    margin-right: 1em !important;
-    margin-top: 1em !important;
+    margin: 0.5em !important;
     height: 35px !important;
     width: 35px !important;
 
@@ -128,7 +97,7 @@ button {
       background-color: var(--facebook);
     }
     &.instagram {
-      background: var(--new-instagram);
+      background: var(--instagram);
     }
     &.linkedin {
       background-color: var(--linkedin);
@@ -164,9 +133,7 @@ input[type="checkbox"]:checked {
 
 .help {
   font-size: 0.8em;
-  color: var(--grey-90);
-  display: flex;
-  align-items: center;
+  color: #757575;
 }
 
 .main {
@@ -201,9 +168,9 @@ input[type="checkbox"]:checked {
       padding: 0 4em;
       background-image: linear-gradient(
         270deg,
-        #ffbf40 25%,
-        #ffab29 60%,
-        #ff9c1f 100%
+        #FFBF40 25%,
+        #FFAB29 60%,
+        #FF9C1F 100%
       );
     }
   }
@@ -278,7 +245,7 @@ input[type="checkbox"]:checked {
 
     form.section {
       .help {
-        color: var(--grey-90);
+        color: var(--grey-80);
         margin-bottom: 5px;
 
         .icon {
@@ -381,7 +348,7 @@ input[type="checkbox"]:checked {
       div {
         display: flex;
         flex-wrap: wrap;
-        width: 100%;
+        width: 90%;
 
         div {
           width: 100%;
@@ -391,7 +358,7 @@ input[type="checkbox"]:checked {
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
-          width: 33%;
+          width: 30%;
           padding-right: 1em;
 
           .form__field {
@@ -416,7 +383,7 @@ input[type="checkbox"]:checked {
         }
 
         .email {
-          width: 66%;
+          width: 60%;
         }
       }
 
@@ -425,6 +392,7 @@ input[type="checkbox"]:checked {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
+        justify-content: end;
 
         label {
           padding: 0;
@@ -639,14 +607,10 @@ label.select {
   &.input {
     border: none;
   }
-
-  label {
-    font-size: 14px !important;
-  }
   .inputField {
     // height: unset;
     max-width: unset;
-    font-size: 16px;
+    font-size: 14px;
     font-family: "Heebo" !important;
     width: -webkit-fill-available;
     border: 1px solid var(--grey-70);
@@ -820,10 +784,6 @@ label.select {
   transition: 300ms;
   position: relative;
   top: 0;
-
-  .icon {
-    color: var(--angry-emoji);
-  }
 }
 .false-info.active {
   display: flex;
@@ -832,9 +792,6 @@ label.select {
   top: 0;
   transition: 300ms;
   position: relative;
-  .icon {
-    color: var(--success);
-  }
 }
 
 .option::after {
@@ -1543,16 +1500,13 @@ p.label {
         margin-bottom: 5px;
         font-weight: 600;
       }
-
+      h5 {
+        font-weight: 800;
+      }
       p {
-        height: 30px;
+        height: 50px;
         margin: 0;
         text-align: center;
-        font-size: 14px;
-      }
-
-      p.example {
-        font-size: 11px;
       }
       .add-container {
         margin-top: 1em;
@@ -2009,36 +1963,14 @@ p.label {
     grid-template-columns: 70% 30%;
     overflow: hidden;
 
-    .image-container {
+    .image-container{
       display: flex;
       justify-content: flex-end;
-
+      
       img {
         max-width: 100%;
         height: min-content;
         max-height: 80%;
-      }
-    }
-
-    .extra {
-      .input-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-
-        .inputFieldWrapper.M {
-          width: unset !important;
-          min-width: unset !important;
-
-          input {
-            width: 470px;
-            max-width: unset !important;
-            min-width: unset !important;
-          }
-        }
-      }
-      .button-container {
-        justify-content: flex-start;
       }
     }
   }
@@ -2174,7 +2106,7 @@ p.label {
       }
 
       .help {
-        font-weight: 300;
+        font-weight: 200;
         margin: 0;
         .icon {
           height: 12px;
@@ -2488,24 +2420,19 @@ p.label {
         margin-left: 1em;
       }
 
-      .form__field {
+      .form__field{
         padding-left: 3.2em !important;
       }
 
       .icon {
-        height: 100%;
+        height: 94%;
         width: 33px;
-        padding: 3px;
+        padding: 5px;
         border-radius: 4px 0 0 4px;
-        margin-top: -8px;
+        margin-top: -7px;
         z-index: 1;
-        margin-left: -10px;
+        margin-left: -9px;
         color: white !important;
-        border: 1px solid var(--grey-70);
-
-        svg path {
-          fill: white;
-        }
       }
 
       .website .icon {
@@ -2515,7 +2442,7 @@ p.label {
         background-color: var(--facebook);
       }
       .instagram .icon {
-        background: var(--new-instagram);
+        background: var(--instagram);
       }
       .youtube .icon {
         background-color: var(--youtube);
@@ -2533,6 +2460,7 @@ p.label {
         background-color: var(--snapchat);
       }
       .spotify .icon {
+        border-radius: 50px;
         background-color: var(--spotify);
       }
 
@@ -2829,22 +2757,14 @@ strong {
       display: grid !important;
       align-items: start;
       grid-gap: 20px;
-      grid-template-columns: repeat(auto-fill, 150px);
+      grid-template-columns: repeat(8, 1fr);
       width: 100% !important;
-
-      .item:hover {
-        border: 1px solid var(--grey-10);
-        border-radius: 5px;
-        transition: 300ms;
-      }
 
       .item {
         display: flex;
-        transition: 300ms;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 1px solid transparent;
 
         .checkBox {
           span {
@@ -2894,18 +2814,11 @@ strong {
           text-align: center;
           font-size: 14px;
         }
-        figure {
-          width: 70px;
-          position: relative;
-          height: 40px;
-        }
+
         img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 100%;
-          padding: 5px;
+          height: 40px;
+          max-width: 100%;
+          width: fit-content;
         }
       }
     }

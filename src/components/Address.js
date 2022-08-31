@@ -1,29 +1,25 @@
-import Icon from "@identitybuilding/idb-react-iconlib";
-import { Button, OsnInputText } from "@identitybuilding/idb-react-ui-elements";
+// import Icon from "@identitybuilding/idb-react-iconlib";
+// import { Button, input , OsnInputText} from "@identitybuilding/idb-react-ui-elements";
 import axios from "axios";
 import { useState } from "react";
 import store from "../store";
-import { updateCurrentEstablishment } from "../actions/GeneralAction";
-import { useDispatch } from "react-redux";
 
 const Address = (props) => {
   const [data, setData] = useState(props.data);
   const [loaded, setLoaded] = useState(true);
-  const dispatch = useDispatch();
 
   const patchData = (data) => {
-    dispatch(updateCurrentEstablishment(data));
-    // axios
-    //   .put(
-    //     "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
-    //     {
-    //       ...data,
-    //     }
-    //   )
-    //   .then((res) => {
-    //     setLoaded(false);
-    //     setLoaded(true);
-    //   });
+    axios
+      .put(
+        "https://ondernemersnetwerk-4a152-default-rtdb.europe-west1.firebasedatabase.app/.json",
+        {
+          ...data,
+        }
+      )
+      .then((res) => {
+        setLoaded(false);
+        setLoaded(true);
+      });
   };
 
   const changeAddress = (e, target) => {
@@ -54,7 +50,7 @@ const Address = (props) => {
       <div className="section-container">
         <form className="section">
           <span className="L">
-            <OsnInputText
+            <input
               required
               title="Straatnaam"
               defaultValue={data.address.street}
@@ -63,7 +59,7 @@ const Address = (props) => {
             />
           </span>
           <span className="XS">
-            <OsnInputText
+            <input
               required
               title="Huisnr"
               defaultValue={data.address.number}
@@ -71,7 +67,7 @@ const Address = (props) => {
             />
           </span>
           <span className="XS">
-            <OsnInputText
+            <input
               required
               title="Bus"
               defaultValue={data.address.box}
@@ -79,7 +75,7 @@ const Address = (props) => {
             />
           </span>
           <span className="XS">
-            <OsnInputText
+            <input
               required
               title="Postcode"
               defaultValue={data.address.postal_code}
@@ -87,7 +83,7 @@ const Address = (props) => {
             />
           </span>
           <span className="M">
-            <OsnInputText
+            <input
               required
               title="Deelgemeente"
               defaultValue={data.address.city}
@@ -96,7 +92,7 @@ const Address = (props) => {
             />
           </span>
           <span className="S">
-            <OsnInputText
+            <input
               required
               title="Stad of Gemeente"
               defaultValue={data.address.municipality}
@@ -105,7 +101,7 @@ const Address = (props) => {
             />
           </span>
           <span className="XL">
-            <OsnInputText
+            <input
               required
               title="Extra adres info"
               defaultValue={data.address.extra}
@@ -113,19 +109,13 @@ const Address = (props) => {
               onBlur={(e) => changeAddress(e, "extra")}
             />
           </span>
-          <span className="help">
-            <Icon name="Info" />
+          <p className="help">
+            {/* <Icon name="Info" /> */}
             Voorbeeld: Ingang langs een zijstraat -{" "}
-            <a
-              href="https://ternat.100procentlokaal.be/zoeken/in/ternat/naar/delhaize/pagina=1"
-              target="_blank"
-              className="yellow bold"
-            >
-              Bekijk een live voorbeeld
-            </a>
-          </span>
+            <a className="yellow bold">Bekijk een live voorbeeld</a>
+          </p>
           <span className="MM">
-            <OsnInputText
+            <input
               required
               title="Longitude"
               defaultValue={data.address.long}
@@ -134,7 +124,7 @@ const Address = (props) => {
             />
           </span>
           <span className="MM">
-            <OsnInputText
+            <input
               required
               title="Latitude"
               defaultValue={data.address.lat}
@@ -149,7 +139,7 @@ const Address = (props) => {
         </div>
       </div>
       <div className="button-container">
-        <Button
+        <button
           text="vorige"
           type="sub"
           size="S"
@@ -159,7 +149,7 @@ const Address = (props) => {
             props.setTab();
           }}
         />
-        <Button
+        <button
           text="volgende"
           type="sub"
           size="S"
